@@ -18,10 +18,8 @@ public class Rider {
 
     private Double rating;
 
-    @OneToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "user_id",nullable = false)
+    @OneToOne
+    @JoinColumn(name = "user_id")
     private User user;
-
-
 
 }

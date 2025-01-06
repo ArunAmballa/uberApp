@@ -24,8 +24,7 @@ public class Payment {
     @Enumerated(EnumType.STRING)
     private PaymentMethod paymentMethod;
 
-    @OneToOne(fetch = FetchType.EAGER)
-    @JoinColumn(nullable = false,name = "ride_id")
+    @OneToOne(fetch = FetchType.LAZY)
     private Ride ride;
 
     private Double amount;

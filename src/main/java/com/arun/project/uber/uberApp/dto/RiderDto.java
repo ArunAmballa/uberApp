@@ -1,6 +1,5 @@
 package com.arun.project.uber.uberApp.dto;
 
-import com.arun.project.uber.uberApp.entities.User;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;

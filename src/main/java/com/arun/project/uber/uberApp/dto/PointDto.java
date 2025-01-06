@@ -9,5 +9,12 @@ import lombok.NoArgsConstructor;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class LoginDto {
+public class PointDto {
+
+    private double[] coordinates;
+    private String type="Point";
+
+    public PointDto(double[] coordinates) {
+        this.coordinates = coordinates;
+    }
 }

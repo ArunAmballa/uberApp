@@ -22,7 +22,6 @@ public class RideRequest {
     private Long id;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "rider_id",nullable = false)
     private Rider rider;
 
     //4326 denotes it for Earth
