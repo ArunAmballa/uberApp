@@ -1,8 +1,7 @@
 package com.arun.project.uber.uberApp.services.implementations;
 
-import com.arun.project.uber.uberApp.dto.RideRequestDto;
 import com.arun.project.uber.uberApp.entities.RideRequest;
-import com.arun.project.uber.uberApp.exceptions.ResourceNotFoundException;
+import com.arun.project.uber.uberApp.exceptions.RideRequestNotFoundException;
 import com.arun.project.uber.uberApp.repositories.RideRequestRepository;
 import com.arun.project.uber.uberApp.services.RideRequestService;
 import lombok.RequiredArgsConstructor;
@@ -23,16 +22,15 @@ public class RideRequestServiceImpl implements RideRequestService {
     @Override
     public RideRequest getRideRequestById(Long rideRequestId) {
         log.info("Checking if RideRequest with ID:{} Exists",rideRequestId);
-        RideRequest rideRequest=rideRequestRepository.findById(rideRequestId).orElseThrow(()->{
+        return rideRequestRepository.findById(rideRequestId).orElseThrow(()->{
             log.error("RideRequest with ID:{} does not exists",rideRequestId);
-            return new ResourceNotFoundException("RideRequest with ID:"+rideRequestId+"does not exist");
+            return new RideRequestNotFoundException("RideRequest with ID:"+rideRequestId+"does not exist");
         });
-        return rideRequest;
     }
 
     @Override
     public void updateRideRequest(RideRequest rideRequest) {
-        rideRequestRepository.findById(rideRequest.getId()).orElseThrow(() -> new ResourceNotFoundException("RideRequest with id " + rideRequest.getId() + " not found"));
+        rideRequestRepository.findById(rideRequest.getId()).orElseThrow(() -> new RideRequestNotFoundException("RideRequest with id " + rideRequest.getId() + " not found"));
         rideRequestRepository.save(rideRequest);
     }
 }

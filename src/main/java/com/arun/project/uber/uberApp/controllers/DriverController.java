@@ -31,5 +31,10 @@ public class DriverController {
         return new ResponseEntity<>(driverService.endRide(rideId), HttpStatus.OK);
     }
 
+    @PostMapping(path="/cancelRide/{rideId}")
+    public ResponseEntity<RideDto> cancelRide(@PathVariable Long rideId){
+        return new ResponseEntity<>(driverService.cancelRide(rideId), HttpStatus.OK);
+    }
+
 
 }
