@@ -1,8 +1,7 @@
 package com.arun.project.uber.uberApp.advices;
 
 
-import com.arun.project.uber.uberApp.exceptions.ResourceNotFoundException;
-import com.arun.project.uber.uberApp.exceptions.RuntimeConflictException;
+import com.arun.project.uber.uberApp.exceptions.*;
 import org.springframework.context.support.DefaultMessageSourceResolvable;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -34,6 +33,86 @@ public class GlobalExceptionHandler {
                 .builder()
                 .message(e.getMessage())
                 .status(HttpStatus.CONFLICT)
+                .build();
+        return helper(apiError);
+    }
+
+    @ExceptionHandler(RideNotFoundException.class)
+    public ResponseEntity<ApiResponse<?>> handleRideNotFoundException(RideNotFoundException e) {
+        ApiError apiError = ApiError
+                .builder()
+                .message(e.getMessage())
+                .status(HttpStatus.NOT_FOUND)
+                .build();
+        return helper(apiError);
+    }
+
+    @ExceptionHandler(DriverMismatchException.class)
+    public ResponseEntity<ApiResponse<?>> handleDriverMismatchException(DriverMismatchException e) {
+        ApiError apiError = ApiError
+                .builder()
+                .message(e.getMessage())
+                .status(HttpStatus.FORBIDDEN)
+                .build();
+        return helper(apiError);
+    }
+
+    @ExceptionHandler(DriverNotAvailableException.class)
+    public ResponseEntity<ApiResponse<?>> handleDriverNotAvailableException(DriverNotAvailableException e) {
+        ApiError apiError = ApiError
+                .builder()
+                .message(e.getMessage())
+                .status(HttpStatus.NOT_FOUND)
+                .build();
+        return helper(apiError);
+    }
+
+    @ExceptionHandler(InvalidRideOtpException.class)
+    public ResponseEntity<ApiResponse<?>> handleInvalidRideOtpException(InvalidRideOtpException e) {
+        ApiError apiError = ApiError
+                .builder()
+                .message(e.getMessage())
+                .status(HttpStatus.BAD_REQUEST)
+                .build();
+        return helper(apiError);
+    }
+
+    @ExceptionHandler(InvalidRideRequestStatusException.class)
+    public ResponseEntity<ApiResponse<?>> handleInvalidRideRequestStatusException(InvalidRideRequestStatusException e) {
+        ApiError apiError = ApiError
+                .builder()
+                .message(e.getMessage())
+                .status(HttpStatus.CONFLICT)
+                .build();
+        return helper(apiError);
+    }
+
+    @ExceptionHandler(InvalidRideStatusException.class)
+    public ResponseEntity<ApiResponse<?>> handleInvalidRideStatusException(InvalidRideStatusException e) {
+        ApiError apiError = ApiError
+                .builder()
+                .message(e.getMessage())
+                .status(HttpStatus.CONFLICT)
+                .build();
+        return helper(apiError);
+    }
+
+    @ExceptionHandler(RideProcessingException.class)
+    public ResponseEntity<ApiResponse<?>> handleRideProcessingException(RideProcessingException e) {
+        ApiError apiError = ApiError
+                .builder()
+                .message(e.getMessage())
+                .status(HttpStatus.INTERNAL_SERVER_ERROR)
+                .build();
+        return helper(apiError);
+    }
+
+    @ExceptionHandler(RideRequestNotFoundException.class)
+    public ResponseEntity<ApiResponse<?>> handleRideRequestNotFoundException(RideRequestNotFoundException e) {
+        ApiError apiError = ApiError
+                .builder()
+                .message(e.getMessage())
+                .status(HttpStatus.NOT_FOUND)
                 .build();
         return helper(apiError);
     }

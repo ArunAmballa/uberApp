@@ -5,7 +5,7 @@ import com.arun.project.uber.uberApp.entities.Driver;
 import com.arun.project.uber.uberApp.entities.Ride;
 import com.arun.project.uber.uberApp.entities.RideRequest;
 import com.arun.project.uber.uberApp.entities.enums.RideStatus;
-import com.arun.project.uber.uberApp.exceptions.ResourceNotFoundException;
+import com.arun.project.uber.uberApp.exceptions.RideNotFoundException;
 import com.arun.project.uber.uberApp.repositories.RideRepository;
 import com.arun.project.uber.uberApp.services.RideRequestService;
 import com.arun.project.uber.uberApp.services.RideService;
@@ -35,7 +35,7 @@ public class RideServiceImpl implements RideService {
         log.info("Checking if ride exists with rideId:{}",rideId);
         return rideRepository.findById(rideId).orElseThrow(() -> {
             log.error("Ride with rideId:{} not found", rideId);
-            return new ResourceNotFoundException("Ride with rideId:" + rideId + " not found");
+            return new RideNotFoundException("Ride with rideId:" + rideId + " not found");
         });
     }
 
